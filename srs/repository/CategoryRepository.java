@@ -1,3 +1,15 @@
+package repository;
+
+import config.DatabaseConnection;
+import exception.DatabaseOperationException;
+import exception.ResourceNotFoundException;
+import model.Category;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class CategoryRepository {
 
     public Category getById(int id) {
@@ -16,6 +28,7 @@ public class CategoryRepository {
                     rs.getInt("id"),
                     rs.getString("name")
             );
+
         } catch (SQLException e) {
             throw new DatabaseOperationException(e.getMessage());
         }

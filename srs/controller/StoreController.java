@@ -1,32 +1,35 @@
+package controller;
+
+import model.App;
+import model.Category;
+import model.Game;
+import model.Product;
+import service.ProductService;
+import repository.CategoryRepository;
+
 public class StoreController {
 
-    private final ProductService productService =
-            new ProductService();
-
-    private final CategoryRepository categoryRepo =
-            new CategoryRepository();
+    private final ProductService productService = new ProductService();
+    private final CategoryRepository categoryRepository = new CategoryRepository();
 
     public void run() {
 
-        Category games = categoryRepo.getById(1);
-        Category utils = categoryRepo.getById(2);
 
-        Product p1 = new Game(
-                0, "Stardew Valley", 9.99, games, "Indie"
-        );
-        Product p2 = new App(
-                0, "Offline Notes", 2.99, utils, true
-        );
+        Category c1 = new Category(1, "Games");
+        Category c2 = new Category(2, "Apps");
 
-        productService.add(p1);
-        productService.add(p2);
 
-        for (Product p : productService.getAll()) {
-            System.out.println(
-                    p.getType() + ": " + p.getDescription()
-            );
-        }
+        Product g = new Game(1, "CS2", 1, c1, "Shooter");
+        Product a = new App(2, "Notion", 5, c2, true);
 
-        productService.delete(1);
+
+        productService.add(g);
+        productService.add(a);
+
+
+        System.out.println(productService.getAll());
+
+
+
     }
 }

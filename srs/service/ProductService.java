@@ -1,4 +1,12 @@
+package service;
+
+import model.Product;
+import repository.ProductRepository;
+
+import java.util.List;
+
 public class ProductService {
+
     private final ProductRepository repo = new ProductRepository();
 
     public void add(Product p) {
